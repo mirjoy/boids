@@ -11,6 +11,7 @@ def draw
 	# move each bird by its speed in the direction its heading
 	background(220, 220, 220)
 	@flock.each { |b| b.draw }
+	@flock.each { |b| b.wrap!(800, 600) }
 	@flock.each { |b| b.move! }
 	puts "drawing"
 	# mouse_x, mouse_y are the coordinates of the mouse
@@ -40,5 +41,10 @@ class Bird
 	def move!
 		@x += x_offset
 		@y += y_offset
+	end
+
+	def wrap!(width, height)
+		@x = x % width
+		@y = y % height
 	end
 end
